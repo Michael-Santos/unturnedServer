@@ -1,0 +1,34 @@
+# Install dependencies
+apt update && update upgrade
+apt install screen htop unzip
+apt install lib32stdc++6
+apt install mono-runtime mono-reference-assemblies-2.0
+apt install libc6 libgl1-mesa-glx libxcursor1 libxrandr2
+apt install libc6-dev libgcc-4.8-dev
+
+# Install steam
+add-apt-repository multiverse
+dpkg --add-architecture i386
+apt update
+apt install lib32gcc1 steamcmd 
+
+# Create then change to user steam
+adduser -m steam
+sudo su - steam
+
+# Install unturned
+mkdir unturned
+steamcmd +login anonymous +force_install_dir /home/ndrcbl6/unturned +app_update 1110390 +quit
+
+# Fixing steamcli.so
+mkdir /home/ndrcbl6/.steam/sdk64/
+    ln -s /home/ndrcbl6/unturned/linux64/steamclient.so /home/ndrcbl6/.steam/sdk64/
+
+# Workaround screen command
+script /dev/null
+
+ssh ndrcbl6@35.247.217.4
+
+
+
+steamcmd +login anonymous +app_info_update 1 +app_info_print "1110390" +quit | grep -EA 1000 "^\s+\"branches\"$" | grep -EA 5 "^\s+\"public\"$" | grep -m 1 -EB 10 "^\s+}$" | grep -E "^\s+\"buildid\"\s+" | tr '[:blank:]"' ' ' | tr -s ' ' | cut -d ' '  -f3
