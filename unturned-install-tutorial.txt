@@ -1,34 +1,29 @@
+#It's recommend to install on Ubuntu 16.04 LTS
+
+# Variables
+ROOTDIR="$PWD"
+STEAMDIR=$ROOTDIR/SteamCMD
+STEAMSDKDIR=$HOME/.steam/sdk64/
+UNTURNEDDIR=$ROOTDIR/unturned
+
 # Install dependencies
-apt update && update upgrade
-apt install screen htop unzip
-apt install lib32stdc++6
-apt install mono-runtime mono-reference-assemblies-2.0
-apt install libc6 libgl1-mesa-glx libxcursor1 libxrandr2
-apt install libc6-dev libgcc-4.8-dev
+sudo apt update -y && update upgrade -y
+sudo apt install screen htop unzip -y
+sudo apt install lib32stdc++6 -y
+sudo apt install mono-runtime mono-reference-assemblies-2.0 -y
+sudo apt install libc6 libgl1-mesa-glx libxcursor1 libxrandr2 -y
+sudo apt install libc6-dev libgcc-4.8-dev -y
 
 # Install steam
-add-apt-repository multiverse
-dpkg --add-architecture i386
-apt update
-apt install lib32gcc1 steamcmd 
-
-# Create then change to user steam
-adduser -m steam
-sudo su - steam
+mkdir $STEAMDIR
+cd $STEAMDIR
+curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+cd $ROOTDIR
 
 # Install unturned
-mkdir unturned
-steamcmd +login anonymous +force_install_dir /home/ndrcbl6/unturned +app_update 1110390 +quit
+mkdir $UNTURNEDDIR
+$STEAMDIR/steamcmd.sh +login anonymous +force_install_dir $UNTURNEDDIR +app_update 1110390 +quit
 
 # Fixing steamcli.so
-mkdir /home/ndrcbl6/.steam/sdk64/
-    ln -s /home/ndrcbl6/unturned/linux64/steamclient.so /home/ndrcbl6/.steam/sdk64/
-
-# Workaround screen command
-script /dev/null
-
-ssh ndrcbl6@35.247.217.4
-
-
-
-steamcmd +login anonymous +app_info_update 1 +app_info_print "1110390" +quit | grep -EA 1000 "^\s+\"branches\"$" | grep -EA 5 "^\s+\"public\"$" | grep -m 1 -EB 10 "^\s+}$" | grep -E "^\s+\"buildid\"\s+" | tr '[:blank:]"' ' ' | tr -s ' ' | cut -d ' '  -f3
+mkdir $STEAMSDKDIR
+ln -s $UNTURNEDDIR/linux64/steamclient.so $STEAMSDKDIR
