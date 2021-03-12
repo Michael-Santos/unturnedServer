@@ -22,7 +22,7 @@ What does this script do?
 
 - Installs required libs on Ubuntu
 - Creates a folder `SteamCMD` for steam 
-- Creates a folder `unturned` for Unturned installation
+- Creates a folder `unturned` for Unturned game
 
 # Scripts
 - installServer.sh - Installs the server as explained on last section
@@ -30,13 +30,23 @@ What does this script do?
 - stopServer.sh - Stops the `unturned` screen sesssion
 - updateServer.sh - Checks if the server is up to date. If it is not, so it stops the current server running when applicable and starts it again.
 
+# How to execute commands in unturned server
+
+It is necessary to get in screen section:
+
+`$ screen -r unturned`
+
+After type the command you want then press `Ctrl + A` followed by `d` to detach the screen session.
+
+
+
 # Auto update
 
 Change the following line in `updateServer.sh` to the folder where unturned is installed:
 
 `HOMEDIRECTORY="/home/michaelsanttos12"`
 
-We will need to create a cronjob that executes each 30 minutos, for example.
+We will be needed to create a cronjob that executes each 30 minutos, for example.
 
 To edit the cronjob file execute the following commnad:
 
