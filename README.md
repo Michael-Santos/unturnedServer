@@ -55,3 +55,9 @@ To edit the cronjob file execute the following commnad:
 So add the following cronjob to execute the updateServer.sh each 30 minutos and redirects the output in an update.log file.  
 
 `*/30 * * * * {updateServer.sh folder}/updateServer.sh > {updateServer.sh Path}/update.log`
+
+# Useful links
+
+[Unturned commands list](https://unturnedhub.com/commands)
+
+[How to install openmod for unturned](https://openmod.github.io/openmod-docs/userdoc/installation/unturned.html)
