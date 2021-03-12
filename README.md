@@ -30,9 +30,9 @@ What does this script do?
 - stopServer.sh - Stops the `unturned` screen sesssion
 - updateServer.sh - Checks if the server is up to date. If it is not, so it stops the current server running when applicable and starts it again.
 
-# How to execute commands in unturned server
+# How to execute commands on server console
 
-It is necessary to get in screen section:
+It is necessary to get in screen session:
 
 `$ screen -r unturned`
 
