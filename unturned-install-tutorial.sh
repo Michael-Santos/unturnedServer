@@ -1,4 +1,4 @@
-#It's recommend to install on Ubuntu 16.04 LTS
+# It's recommend to install on Ubuntu 16.04 LTS
 
 # Variables
 ROOTDIR="$PWD"
@@ -7,7 +7,7 @@ STEAMSDKDIR=$HOME/.steam/sdk64/
 UNTURNEDDIR=$ROOTDIR/unturned
 
 # Install dependencies
-sudo apt update -y && update upgrade -y
+sudo apt update -y && sudo apt upgrade -y
 sudo apt install screen htop unzip -y
 sudo apt install lib32stdc++6 -y
 sudo apt install mono-runtime mono-reference-assemblies-2.0 -y
