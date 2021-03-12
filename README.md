@@ -44,7 +44,7 @@ After type the command you want then press `Ctrl + A` followed by `d` to detach 
 
 Change the following line in `updateServer.sh` to the folder where unturned is installed:
 
-`HOMEDIRECTORY="/home/michaelsanttos12"`
+`HOMEDIRECTORY="/home/{your username}"`
 
 We will be needed to create a cronjob that executes each 30 minutos, for example.
 
