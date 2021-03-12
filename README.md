@@ -9,7 +9,7 @@ The main goal of this projet is help people to easily set up a unturned server.
 
 I tried to keep the installation the simplest as possible.
 
-The only requiment is to run scripts on Ubuntu 16.04 TSL. I tested the script on newer Ubuntu versions however it sucked installing some libs.
+The only requiment is to run the scripts on Ubuntu 16.04 TSL. I tested the script on newer Ubuntu versions however it sucked installing some libs (If you fell confortable to send a pull request fixing this it would be nice :stuck_out_tongue_winking_eye:)
 
 
 # Installation
@@ -32,3 +32,16 @@ What does this script do?
 
 # Auto update
 
+Change the following line in `updateServer.sh` to the folder where unturned is installed:
+
+`HOMEDIRECTORY="/home/michaelsanttos12"`
+
+We will need to create a cronjob that executes each 30 minutos, for example.
+
+To edit the cronjob file execute the following commnad:
+
+`$ crontab -e`
+
+So add the following cronjob to execute the updateServer.sh each 30 minutos and redirects the output in an update.log file.  
+
+`*/30 * * * * {updateServer.sh folder}/updateServer.sh > {updateServer.sh Path}/update.log`

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Server variables
-HOMEDIRECTORY=/home/ndrcbl6
-UNTURNEDDIRECTORY=/home/ndrcbl6/unturned
+HOMEDIRECTORY="/home/michaelsanttos12"
+UNTURNEDDIRECTORY=$HOMEDIRECTORY/unturned
 NEWERVERSIONFILE=$HOMEDIRECTORY/newerversion.txt
 CURRENTVERSIONFILE=$HOMEDIRECTORY/currentversion.txt
 STEAMDIR=$HOMEDIRECTORY/SteamCMD
@@ -27,6 +27,10 @@ updateVersionFiles() {
 fetchLastVersion() {
   $STEAMDIR/steamcmd.sh +login anonymous +app_info_update 1 +app_info_print "1110390" +quit | grep -EA 1000 "^\s+\"branches\"$" | grep -EA 5 "^\s+\"public\"$" | grep -m 1 -EB 10 "^\s+}$" | grep -E "^\s+\"buildid\"\s+" | tr '[:blank:]"' ' ' | tr -s ' ' | cut -d ' '  -f3 > $NEWERVERSIONFILE
 }
+
+
+[[ ! -f $NEWERVERSIONFILE ]] && touch $NEWERVERSIONFILE
+[[ ! -f $CURRENTVERSIONFILE ]] && touch $CURRENTVERSIONFILE
 
 USER=$LOGNAME
 echo "User: "$LOGNAME
