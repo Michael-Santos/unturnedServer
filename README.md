@@ -27,8 +27,9 @@ What does this script do?
 # Scripts
 - installServer.sh - Installs the server as explained on last section
 - startServer.sh - Starts a screen session called `unturned` running the server
-- stopServer.sh - Stops the `unturned` screen sesssion
-- updateServer.sh - Checks if the server is up to date. If it is not, so it stops the current server running when applicable and starts it again.
+- stopServer.sh - Saves the game then stops the `unturned` screen sesssion
+- updateServer.sh - Checks if the server is up to date. If it is not, so it stops the current server running when applicable and starts it again. (Need to fix it :fire:)
+- saveSever.sh - Sends a save command into screen session
 
 # How to execute commands on server console
 
@@ -38,23 +39,35 @@ It is necessary to get in screen session:
 
 After type the command you want then press `Ctrl + A` followed by `d` to detach the screen session.
 
+# Auto save
 
+It seems that it has a issue to up to date the game if you do not save the game manually (I lost all the progress since last save after update the game :sob::scream::anger:).
 
-# Auto update
-
-Change the following line in `updateServer.sh` to the folder where unturned is installed:
-
-`HOMEDIRECTORY="/home/{your username}"`
-
-We will be needed to create a cronjob that executes each 30 minutos, for example.
+It will be needed to create a cronjob that executes each 30 minutos, for example.
 
 To edit the cronjob file execute the following commnad:
 
 `$ crontab -e`
 
-So add the following cronjob to execute the updateServer.sh each 30 minutos and redirects the output in an update.log file.  
+So add the following cronjob to execute the `saveServer.sh` each 10 minutos and redirects the output in an save.log file.  
 
-`*/30 * * * * {updateServer.sh folder}/updateServer.sh > {updateServer.sh Path}/update.log`
+`*/10 * * * * {saveServer.sh folder}/saveServer.sh > {saveServer.sh folder}/save.log`
+
+# Auto update (Need to fix)
+
+Change the following line in `updateServer.sh` to the folder where unturned is installed:
+
+`HOMEDIRECTORY="/home/{your username}"`
+
+It will be needed to create a cronjob that executes each 30 minutos, for example.
+
+To edit the cronjob file execute the following commnad:
+
+`$ crontab -e`
+
+So add the following cronjob to execute the `updateServer.sh` each 30 minutos and redirects the output in an update.log file.  
+
+`*/30 * * * * {updateServer.sh folder}/updateServer.sh > {updateServer.sh folder}/update.log`
 
 # Useful links
 
